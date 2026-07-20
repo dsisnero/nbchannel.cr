@@ -54,7 +54,7 @@ class NBChannel(T) < Channel(T)
         @receivers.push pointerof(receiver)
         @lock.unlock
 
-        Crystal::Scheduler.reschedule
+        Fiber.suspend
 
         case receiver.state
         in .delivered?
